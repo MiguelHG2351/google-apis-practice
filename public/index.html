@@ -12,16 +12,42 @@
 </head>
 <body>
     <h1>XD</h1>
-    <form action="/google/insert" method="post">
+    <form action="/google/insert" id="form" method="post">
         <div>
-            <input type="Nombre" placeholder="Nombre">
+            <input name="name" type="Nombre" placeholder="Nombre">
             <select name="type" id="type">
                 <option value="employee">Empleado</option>
-                <option value="cliente">Cliente</option>
+                <option value="client">Cliente</option>
                 <option value="office">Sucurales</option>
             </select>
         </div>
-        <input type="text" value="Apellido">
+        <input type="text" name="lastname" placeholder="Apellido">
+        <button type="submit">Enviar</button>
     </form>
+
+    <script>
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log(e.currentTarget)
+            const data = new FormData(e.currentTarget);
+            const name = data.get('name');
+            const lastname = data.get('lastname');
+            const type = data.get('type');
+
+            fetch('/google/insert', {
+                method: 'POST',
+                body: data,
+                body: JSON.stringify({
+                    name,
+                    lastname,
+                    type
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => response.text())
+            .then((message) => console.log(message))
+        })
+    </script>
 </body>
 </html>

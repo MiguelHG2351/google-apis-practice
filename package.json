@@ -6,7 +6,8 @@
   "homepage": "https://github.com/MiguelHG2351/google-apis-practice#readme",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "node prebuild.js && nodemon index.js"
+    "start:dev": "node prebuild.js && nodemon index.js",
+    "prebuild": "node prebuild.js"
   },
   "dependencies": {
     "express": "^4.18.1",
